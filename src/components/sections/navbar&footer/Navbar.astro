@@ -1,12 +1,14 @@
 ---
 //Import relevant dependencies
+import { Image } from "astro:assets";
 import ThemeIcon from "@components/ThemeIcon.astro";
 import NavLink from "@components/ui/links/NavLink.astro";
 import Authentication from "../misc/Authentication.astro";
 import enStrings from "@utils/navigation.ts";
 import frStrings from "@utils/fr/navigation.ts";
-import BrandLogo from "@components/BrandLogo.astro";
 import LanguagePicker from "@components/ui/LanguagePicker.astro";
+import logoImage from "@images/logo-ph.png";
+import logoImageWhite from "@images/logo-ph_white.png";
 
 // Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === "fr" ? frStrings : enStrings;
@@ -29,7 +31,17 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
         href={homeUrl}
         aria-label="Brand"
       >
-        <BrandLogo class="h-auto w-24" />
+      <Image
+      id="theme-logo"
+      src={logoImage}
+      alt="logo PH GARCIA"
+      class="h-auto w-24"
+      draggable="false"
+      loading="eager"
+      data-light-logo={logoImage}
+      data-dark-logo={logoImageWhite}
+    />
+    
       </a>
       <!-- Collapse toggle for smaller screens -->
       <div class="ml-auto mr-5 md:hidden">
@@ -112,7 +124,7 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
     },
     _resetStylesOnLoad() {
       const $resetStyles = document.createElement("style");
-      $resetStyles.innerText = `*{transition: unset !important;}`;
+      $resetStyles.innerText = `* { transition: unset !important; }`;
       $resetStyles.setAttribute("data-hs-appearance-onload-styles", "");
       document.head.appendChild($resetStyles);
       return $resetStyles;
@@ -134,9 +146,7 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
       document.querySelector("html").classList.remove("default");
       document.querySelector("html").classList.remove("auto");
 
-      document
-        .querySelector("html")
-        .classList.add(this.getOriginalAppearance());
+      document.querySelector("html").classList.add(theme);
 
       setTimeout(() => {
         $resetStylesEl.remove();
@@ -144,12 +154,24 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
 
       if (dispatchEvent) {
         window.dispatchEvent(
-          new CustomEvent("on-hs-appearance-change", { detail: theme }),
+          new CustomEvent("on-hs-appearance-change", { detail: theme })
         );
       }
+
+      // Update logo based on theme change
+      this.updateLogo(theme);
     },
+    updateLogo(theme) {
+      const logoElement = document.getElementById("theme-logo");
+      if (logoElement) {
+        logoElement.src = theme === "dark"
+          ? logoImageWhite
+          : logoImage;
+      }
+    },
+
     getAppearance() {
-      let theme = this.getOriginalAppearance();
+      let theme = localStorage.getItem("hs_theme") || "default";
       if (theme === "auto") {
         theme = window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
@@ -157,11 +179,8 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
       }
       return theme;
     },
-    getOriginalAppearance() {
-      const defaultTheme = "default";
-      return localStorage.getItem("hs_theme") || defaultTheme;
-    },
   };
+
   HSThemeAppearance.init();
 
   window
@@ -173,20 +192,16 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
     });
 
   window.addEventListener("load", () => {
-    const $clickableThemes = document.querySelectorAll(
-      "[data-hs-theme-click-value]",
-    );
-    const $switchableThemes = document.querySelectorAll(
-      "[data-hs-theme-switch]",
-    );
+    const $clickableThemes = document.querySelectorAll("[data-hs-theme-click-value]");
+    const $switchableThemes = document.querySelectorAll("[data-hs-theme-switch]");
 
     $clickableThemes.forEach(($item) => {
       $item.addEventListener("click", () =>
         HSThemeAppearance.setAppearance(
           $item.getAttribute("data-hs-theme-click-value"),
           true,
-          $item,
-        ),
+          $item
+        )
       );
     });
 
@@ -205,6 +220,8 @@ const homeUrl = Astro.currentLocale === "fr" ? "/fr" : "/";
     });
   });
 </script>
+
+
 <!--Import the necessary Collapse and Overlay plugins-->
 <!--https://preline.co/plugins/html/collapse.html-->
 <!--https://preline.co/plugins/html/overlay.html-->
