@@ -84,11 +84,11 @@ interface Props {
 		 />
 		}
     	</div>
-	<div>
+  </div>
+	<div class="flex md:col-span-2 align-center justify-center">
 	    <!-- Review Section: This section presents avatars, review ratings and the number of reviews -->
 	    { withReview ? (
 	    <ReviewComponent avatars={avatars} starCount={starCount} rating={rating} reviews={reviews} />
 	    ) : "" }
 	</div>
-  </div>
 </section>
