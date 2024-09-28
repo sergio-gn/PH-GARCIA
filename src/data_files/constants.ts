@@ -2,11 +2,11 @@ import ogImageSrc from "@images/social.png";
 
 export const SITE = {
   title: "PH Garcia Reparos",
-  tagline: "Top-quality Hardware Tools",
-  description: "PH Garcia Reparos offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.",
-  description_short: "PH Garcia Reparos offers top-tier hardware tools and expert construction services to meet all your project needs.",
-  url: "https://PH Garcia Reparos.uk",
-  author: "Emil Gulamov",
+  tagline: "Reparos, Pintura, Elétrica e Hidráulica",
+  description: "Precisou Consertar em Curitiba? Chama PH Garcia, especialista em Reparos, Pintura, Elétrica e Hidráulica",
+  description_short: "Precisou Consertar em Curitiba? Chama PH Garcia, especialista em Reparos, Pintura, Elétrica e Hidráulica",
+  url: "https://phgarcia.com.br/",
+  author: "Ph Garcia",
 };
 
 export const SEO = {
@@ -30,10 +30,10 @@ export const SEO = {
 };
 
 export const OG = {
-  locale: "en_US",
+  locale: "pt_BR",
   type: "website",
   url: SITE.url,
-  title: `${SITE.title}: : Hardware Tools & Construction Services`,
-  description: "Equip your projects with PH Garcia Reparos's top-quality hardware tools and expert construction services. Trusted by industry leaders, PH Garcia Reparos offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
+  title: `${SITE.title}: : Reparos, Pintura, Elétrica e Hidráulica`,
+  description: "Precisou Consertar em Curitiba? Chama PH Garcia, especialista em Reparos, Pintura, Elétrica e Hidráulica",
   image: ogImageSrc,
 };

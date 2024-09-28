@@ -4,6 +4,8 @@ dist/
 .astro/
 .idea/
 
+*:[Zz]one.Identifier
+
 # dependencies
 node_modules/
 
