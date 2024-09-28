@@ -33,7 +33,7 @@ import Icon from "./icons/Icon.astro";
       Object.entries(languages).map(([lang, label]) => (
         <a
           class="flex items-center gap-x-3.5 rounded-lg px-3 py-2 text-sm text-neutral-800 hover:bg-neutral-100 focus:bg-neutral-100 focus:outline-none dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
-          href={`/${lang === "en" ? "" : lang}`}
+          href={`/${lang === "pt" ? "" : lang}`}
         >
           {label}
         </a>
@@ -42,20 +42,24 @@ import Icon from "./icons/Icon.astro";
   </div>
 </div>
 
-<!--Import the necessary Dropdown plugin-->
-<!--https://preline.co/plugins/html/dropdown.html-->
+<!-- Import the necessary Dropdown plugin -->
 <script>
   import "@preline/dropdown/index.js";
 </script>
 
 <script>
   // Type alias for supported languages
-  type TLanguage = "en" | "fr";
+  type TLanguage = "pt" | "en" | "fr" | "it"; // Include 'pt' for Portuguese
+
   // array of supported languages
-  const languages: TLanguage[] = ["en", "fr"];
+  const languages: TLanguage[] = ["pt", "en", "fr", "it"]; // Make sure 'pt' is included
 
   document.addEventListener("DOMContentLoaded", function () {
     const languageLinks = document.querySelectorAll(".hs-dropdown-menu a");
+    const defaultLang = 'pt'; // Set Portuguese as the default language
+
+    const url = new URL(window.location.href);
+
     languageLinks.forEach((element) => {
       const link = element as HTMLAnchorElement;
       const lang = link
@@ -66,7 +70,6 @@ import Icon from "./icons/Icon.astro";
       link.addEventListener("click", function (event) {
         event.preventDefault();
 
-        const url = new URL(window.location.href);
         const pathParts = url.pathname
           .split("/")
           .filter((part) => part && !languages.includes(part as TLanguage));
@@ -86,7 +89,8 @@ import Icon from "./icons/Icon.astro";
             pathParts.splice(2, 0, "en");
           }
         } else {
-          if (lang !== "en") {
+          // If the selected language is not Portuguese, add it to the URL
+          if (lang !== defaultLang) {
             pathParts.unshift(lang);
           }
         }

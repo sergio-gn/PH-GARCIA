@@ -1,15 +1,15 @@
 // An array of links for navigation bar
 const navBarLinks = [
-  { name: "Home", url: "/" },
-  { name: "Products", url: "/products" },
-  { name: "Services", url: "/services" },
+  { name: "Início", url: "/" },
+  { name: "Obras Concluídas", url: "/obras" },
+  { name: "Serviços", url: "/servicos" },
   { name: "Blog", url: "/blog" },
-  { name: "Contact", url: "/contact" },
+  { name: "Contato", url: "/contato" },
 ];
 // An array of links for footer
 const footerLinks = [
   {
-    section: "Ecosystem",
+    section: "Informações",
     links: [
       { name: "Documentation", url: "/welcome-to-docs/" },
       { name: "Tools & Equipment", url: "/products" },
@@ -30,7 +30,7 @@ const footerLinks = [
 const socialLinks = {
   facebook: "https://www.facebook.com/",
   x: "https://twitter.com/",
-  github: "https://github.com/mearashadowfax/ScrewFast",
+  github: "https://github.com/mearashadowfax/PH Garcia Reparos",
   google: "https://www.google.com/",
   slack: "https://slack.com/",
 };

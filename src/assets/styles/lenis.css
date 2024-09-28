@@ -18,3 +18,12 @@ html.lenis body {
 .lenis.lenis-scrolling iframe {
     pointer-events: none;
 }
+.bg-green-400 {
+    background-color: #25d366;
+}
+.hover\:bg-green-500:hover{
+    background-color: #14b851;
+}
+.active\:bg-green-500:active{
+    background-color: #14b851;
+}
