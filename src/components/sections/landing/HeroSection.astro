@@ -69,26 +69,26 @@ interface Props {
       <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} />
       }
     </div>
-
-    <!-- Review Section: This section presents avatars, review ratings and the number of reviews -->
-    { withReview ? (
-    <ReviewComponent avatars={avatars} starCount={starCount} rating={rating} reviews={reviews} />
-    ) : "" }
-
   </div>
   <!-- Hero Image Section -->
   <div class="flex w-full">
-      <div class="top-12 overflow-hidden">
-	{src && alt &&
-	<Image
-        src={src}
-        alt={alt}
-        class="h-full w-full object-cover object-center"
-        draggable={"false"}
-        loading={"eager"}
-        format={"avif"}
-	 />
-	}
-    </div>
+      	<div class="top-12 overflow-hidden">
+		{src && alt &&
+		<Image
+	        src={src}
+	        alt={alt}
+	        class="h-full w-full object-cover object-center"
+	        draggable={"false"}
+	        loading={"eager"}
+	        format={"avif"}
+		 />
+		}
+    	</div>
+	<div>
+	    <!-- Review Section: This section presents avatars, review ratings and the number of reviews -->
+	    { withReview ? (
+	    <ReviewComponent avatars={avatars} starCount={starCount} rating={rating} reviews={reviews} />
+	    ) : "" }
+	</div>
   </div>
 </section>
