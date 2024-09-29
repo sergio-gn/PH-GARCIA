@@ -7,6 +7,10 @@ Disallow:
 Allow: /
 Crawl-delay: 10
 
+User-agent: meta-externalagent
+Disallow:
+Allow: /
+
 User-agent: Yandex
 Disallow:
 Allow: /
